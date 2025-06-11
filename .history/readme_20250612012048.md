@@ -1,0 +1,32 @@
+# 基于LightGBM的加密货币高频收益率预测
+
+![特征重要性](fig/feature_importance.png)
+
+## 项目概述
+本项目使用LightGBM集成学习方法预测14种加密货币的15分钟残差收益率。最终模型加权相关系数达到0.01929，在Kaggle竞赛中排名第10位（金牌水平）。
+
+**竞赛链接**: [G-Research加密货币预测](https://www.kaggle.com/competitions/g-research-crypto-forecasting/data)
+
+## 团队成员
+- **刘健乐**：数据清洗与预处理
+- **胡锦程**：因子挖掘与特征工程  
+- **詹炫佑**：模型训练与结果汇总
+
+## 核心方法
+### 数据特征
+- 时间范围：2018-2022年分钟级K线数据
+- 14种主流币种（BTC/ETH等）
+- 构建100+技术因子与量价特征
+
+### 模型架构
+```python
+{
+    "objective": "regression",
+    "metric": "rmse",
+    "boosting_type": "gbdt",
+    "learning_rate": 0.01,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 200,
+    "n_estimators": 500
+}
